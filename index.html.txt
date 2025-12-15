@@ -1,0 +1,1655 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GRAFIKA Казань | Работа в команде</title>
+  <meta name="description" content="Вакансии в школе рисования GRAFIKA (Казань): промоутер, менеджер по продажам, колл-менеджер, супервайзер промоутеров. Команда, рост, обучение продажам."/>
+  <meta name="theme-color" content="#07070b"/>
+
+  <style>
+    :root{
+      --bg:#07070b;
+      --panel:#0e0e15;
+      --panel2:#121222;
+      --text:#f5f4f8;
+      --muted:#c8c3d4;
+      --muted2:#9a93ad;
+      --line:rgba(255,255,255,.10);
+
+      --accent:#7c3aed;
+      --accent2:#a855f7;
+      --gold:#d8c6a8;
+      --gold2:#f0e3cc;
+
+      --shadow: 0 18px 70px rgba(0,0,0,.62);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:
+        radial-gradient(900px 420px at 18% -10%, rgba(124,58,237,.42), transparent 60%),
+        radial-gradient(760px 420px at 88% 8%, rgba(216,198,168,.20), transparent 60%),
+        radial-gradient(900px 520px at 55% 120%, rgba(168,85,247,.16), transparent 62%),
+        linear-gradient(180deg, #07070b, #050509 70%, #07070b),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+
+    .wrap{max-width:1120px; margin:0 auto; padding:22px}
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(12px);
+      background: rgba(7,7,11,.66);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:14px 22px;
+      max-width:1120px; margin:0 auto;
+    }
+
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.4px}
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, var(--accent), #111 62%, var(--gold));
+      box-shadow: 0 18px 50px rgba(124,58,237,.25);
+      border:1px solid rgba(255,255,255,.14);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40px;
+      background: linear-gradient(115deg, transparent 40%, rgba(240,227,204,.25) 50%, transparent 60%);
+      transform: translateX(-40%);
+      animation: shine 5.5s ease-in-out infinite;
+    }
+    @keyframes shine{
+      0%,45%{transform: translateX(-55%)}
+      55%,100%{transform: translateX(65%)}
+    }
+    .brand small{
+      display:block;
+      color:var(--muted2);
+      font-weight:700;
+      margin-top:-2px;
+      letter-spacing:0;
+    }
+
+    .navlinks{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+    .chip{
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+      transition:.15s ease;
+      font-weight:750;
+      font-size:14px;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .chip:hover{
+      transform: translateY(-1px);
+      border-color: rgba(216,198,168,.40);
+      color:var(--text)
+    }
+    .cta{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(216,198,168,.45);
+      background: linear-gradient(180deg, rgba(216,198,168,.18), rgba(124,58,237,.12));
+      box-shadow: 0 14px 44px rgba(216,198,168,.10), 0 18px 60px rgba(124,58,237,.14);
+      font-weight:950;
+      transition:.15s ease;
+      white-space:nowrap;
+    }
+    .cta:hover{transform: translateY(-1px); border-color: rgba(240,227,204,.60)}
+
+    @media (max-width: 980px){ .navlinks{display:none} }
+
+    /* Cards */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      transform: translateZ(0);
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(135deg, rgba(216,198,168,.22), rgba(124,58,237,.18), rgba(255,255,255,.06));
+      opacity:.18;
+      pointer-events:none;
+    }
+    .card.pad{padding:22px; position:relative; z-index:1}
+    .cardHover{
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .cardHover:hover{
+      transform: translateY(-2px);
+      border-color: rgba(216,198,168,.28);
+    }
+
+    /* Reveal animation */
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.in{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Hero */
+    .hero{padding:28px 0 10px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(216,198,168,.28);
+      background: rgba(216,198,168,.07);
+      color: var(--gold2);
+      font-weight:950;
+      font-size:13px;
+      letter-spacing:.2px;
+    }
+
+    h1{margin:14px 0 10px; font-size:44px; line-height:1.02; letter-spacing:-.7px}
+    @media (max-width: 520px){ h1{font-size:36px} }
+
+    .sub{color: var(--muted); font-size:16px; margin:0 0 18px; max-width: 62ch}
+
+    .row{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .pill{
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      font-weight:750;
+      font-size:14px;
+    }
+    .pill strong{color:var(--text); font-weight:950}
+
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      font-weight:950;
+      cursor:pointer;
+      transition:.15s ease;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(216,198,168,.34)}
+    .btn.primary{
+      border-color: rgba(216,198,168,.45);
+      background: linear-gradient(180deg, rgba(216,198,168,.18), rgba(124,58,237,.12));
+    }
+    .btn.beige{
+      border-color: rgba(240,227,204,.30);
+      background: linear-gradient(180deg, rgba(240,227,204,.16), rgba(255,255,255,.02));
+    }
+
+    .mini{display:grid; grid-template-columns: 1fr 1fr; gap:12px; height:100%}
+    @media (max-width: 980px){ .mini{grid-template-columns:1fr} }
+    .mini .box{
+      padding:18px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(18,18,34,.70), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .mini .box:hover{transform: translateY(-2px); border-color: rgba(216,198,168,.24)}
+    .mini .box:after{
+      content:"";
+      position:absolute; inset:auto -40px -40px auto;
+      width:120px; height:120px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(216,198,168,.20), transparent 60%),
+                  radial-gradient(circle at 70% 70%, rgba(124,58,237,.22), transparent 62%);
+      filter: blur(2px);
+      opacity:.9;
+    }
+    .mini h3{margin:0 0 6px; font-size:16px; position:relative; z-index:1}
+    .mini p{margin:0; color:var(--muted); font-size:14px; position:relative; z-index:1}
+    .mini .tag{
+      display:inline-block;
+      margin-top:10px;
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(216,198,168,.26);
+      background: rgba(216,198,168,.06);
+      color: #efe6d6;
+      font-weight:950;
+      font-size:12px;
+      position:relative; z-index:1;
+    }
+
+    section{padding:16px 0}
+    .sectionTitle{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px;
+      margin:10px 0 12px;
+    }
+    .sectionTitle h2{margin:0; font-size:22px; letter-spacing:-.2px}
+    .sectionTitle span{color:var(--muted2); font-weight:750; font-size:13px}
+
+    .list{
+      margin:12px 0 0; padding:0; list-style:none;
+      display:grid; gap:10px;
+    }
+    .list li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      font-weight:750;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .list li:hover{transform: translateY(-1px); border-color: rgba(216,198,168,.20)}
+    .dot{
+      width:10px; height:10px; border-radius: 999px;
+      background: linear-gradient(180deg, var(--gold2), var(--accent));
+      margin-top:5px;
+      box-shadow: 0 12px 36px rgba(216,198,168,.16);
+      flex: 0 0 auto;
+    }
+    .list b{color:var(--text)}
+    .note{margin-top:12px; color: var(--muted2); font-size:13px; font-weight:650}
+
+    /* Jobs */
+    .jobs{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){ .jobs{grid-template-columns:1fr} }
+
+    .job{
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(14,14,21,.85), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .job:hover{transform: translateY(-2px); border-color: rgba(216,198,168,.26)}
+    .job:before{
+      content:"";
+      position:absolute; inset:-40px -30px auto auto;
+      width:130px; height:130px;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(216,198,168,.22), transparent 60%),
+                  radial-gradient(circle at 70% 70%, rgba(124,58,237,.26), transparent 60%);
+      filter: blur(2px);
+      opacity:.9;
+    }
+    .jobHead{display:flex; gap:10px; align-items:flex-start; justify-content:space-between}
+    .job h3{margin:0; font-size:18px}
+    .badge{
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(216,198,168,.28);
+      background: rgba(216,198,168,.06);
+      color: var(--gold2);
+      font-weight:950;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .job p{margin:8px 0 12px; color:var(--muted); font-size:14px; font-weight:650}
+
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      padding:10px 12px;
+    }
+    summary{cursor:pointer; font-weight:950; color: var(--text); list-style:none}
+    summary::-webkit-details-marker{display:none}
+    .job ul{margin:10px 0 0; padding-left:18px; color:var(--muted); font-weight:650}
+    .job ul li{margin:6px 0}
+
+    .job .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .applyBtn{
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(216,198,168,.45);
+      background: rgba(216,198,168,.10);
+      font-weight:1000;
+      cursor:pointer;
+    }
+    .applyBtn:hover{transform: translateY(-1px)}
+    .ghost{
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      font-weight:950;
+      cursor:pointer;
+    }
+    .ghost:hover{border-color: rgba(216,198,168,.34)}
+
+    /* Process */
+    .process{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 980px){ .process{grid-template-columns:1fr 1fr} }
+    @media (max-width: 520px){ .process{grid-template-columns:1fr} }
+    .step{
+      padding:16px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(255,255,255,.02);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .step:hover{transform: translateY(-2px); border-color: rgba(216,198,168,.22)}
+    .step .n{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:30px; height:30px;
+      border-radius: 12px;
+      border:1px solid rgba(216,198,168,.34);
+      background: rgba(216,198,168,.08);
+      font-weight:1000;
+      margin-bottom:10px;
+      color: var(--gold2);
+    }
+    .step b{display:block; margin-bottom:6px}
+    .step p{margin:0; color:var(--muted); font-weight:650; font-size:14px}
+
+    /* Slider */
+    .slider{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      overflow:hidden;
+      position:relative;
+      box-shadow: var(--shadow);
+    }
+    .slides{
+      display:flex;
+      width:100%;
+      transform: translateX(0);
+      transition: transform .45s ease;
+    }
+    .slide{
+      min-width:100%;
+      height:420px;
+      position:relative;
+    }
+    @media (max-width: 980px){ .slide{height:360px} }
+    @media (max-width: 520px){ .slide{height:280px} }
+    .slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter: contrast(1.05) saturate(1.05);
+    }
+    .slide .cap{
+      position:absolute; left:12px; bottom:12px;
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(216,198,168,.28);
+      background: rgba(7,7,11,.55);
+      backdrop-filter: blur(10px);
+      color: var(--gold2);
+      font-weight:950;
+      font-size:12px;
+      max-width: calc(100% - 24px);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .snav{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:44px; height:44px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,10,16,.55);
+      backdrop-filter: blur(10px);
+      color: var(--text);
+      font-weight:1000;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      transition:.15s ease;
+      user-select:none;
+    }
+    .snav:hover{transform: translateY(-50%) scale(1.02); border-color: rgba(216,198,168,.32)}
+    .snav.prev{left:12px}
+    .snav.next{right:12px}
+
+    .dots{
+      position:absolute;
+      left:50%;
+      bottom:12px;
+      transform: translateX(-50%);
+      display:flex;
+      gap:8px;
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,7,11,.45);
+      backdrop-filter: blur(10px);
+    }
+    .dotBtn{
+      width:9px; height:9px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.24);
+      background: rgba(255,255,255,.12);
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .dotBtn.active{
+      background: linear-gradient(180deg, var(--gold2), var(--accent));
+      border-color: rgba(216,198,168,.45);
+      transform: scale(1.07);
+    }
+
+    /* Founders story */
+    .timeline{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 980px){ .timeline{grid-template-columns:1fr} }
+    .tcard{
+      padding:16px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(255,255,255,.02);
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .tcard:hover{transform: translateY(-2px); border-color: rgba(216,198,168,.22)}
+    .tcard b{display:block; margin-bottom:6px}
+    .tcard p{margin:0; color:var(--muted); font-weight:650; font-size:14px}
+    .tcard .tag{
+      display:inline-block;
+      margin-top:10px;
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(216,198,168,.26);
+      background: rgba(216,198,168,.06);
+      color: #efe6d6;
+      font-weight:950;
+      font-size:12px;
+    }
+
+    /* Day in life */
+    .tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .tabBtn{
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-weight:900;
+      font-size:14px;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .tabBtn:hover{transform: translateY(-1px); border-color: rgba(216,198,168,.26); color: var(--text)}
+    .tabBtn.active{
+      border-color: rgba(216,198,168,.45);
+      background: rgba(216,198,168,.10);
+      color: var(--text);
+    }
+    .tabPanel{
+      display:none;
+    }
+    .tabPanel.active{
+      display:block;
+    }
+    .dayGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 980px){ .dayGrid{grid-template-columns:1fr} }
+    .slot{
+      padding:14px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(255,255,255,.02);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .slot:hover{transform: translateY(-2px); border-color: rgba(216,198,168,.22)}
+    .slot .time{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--gold2);
+      font-weight:1000;
+      font-size:12px;
+      margin-bottom:10px;
+    }
+    .slot b{display:block; margin-bottom:6px}
+    .slot p{margin:0; color: var(--muted); font-weight:650; font-size:14px}
+
+    /* Not hiring */
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+    .xBadge{
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+    .xBadge b{color: var(--text)}
+    .xBadge .x{color: var(--gold2); font-weight:1000}
+
+    /* Test */
+    .quiz{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .q{
+      padding:14px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      background: rgba(255,255,255,.02);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .q:hover{transform: translateY(-2px); border-color: rgba(216,198,168,.22)}
+    .qTop{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+    .q b{display:block; margin-bottom:6px}
+    .q p{margin:0; color:var(--muted); font-weight:650; font-size:14px}
+    .yn{
+      display:flex;
+      gap:8px;
+      flex: 0 0 auto;
+    }
+    .yn button{
+      padding:8px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-weight:1000;
+      cursor:pointer;
+      transition:.15s ease;
+      min-width:54px;
+    }
+    .yn button:hover{transform: translateY(-1px); border-color: rgba(216,198,168,.26); color: var(--text)}
+    .yn button.active{
+      border-color: rgba(216,198,168,.45);
+      background: rgba(216,198,168,.10);
+      color: var(--text);
+    }
+    .quizFooter{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-top:12px;
+    }
+    .result{
+      padding:12px 14px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      font-weight:900;
+      flex: 1 1 340px;
+    }
+    .result b{color: var(--text)}
+    .muted{color:var(--muted)}
+
+    /* Form */
+    .formGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 980px){ .formGrid{grid-template-columns:1fr} }
+    label{display:block; font-weight:950; margin:0 0 6px}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+      outline:none;
+      font-weight:750;
+    }
+    input::placeholder, textarea::placeholder{color: rgba(200,195,212,.60); font-weight:650}
+    textarea{min-height:110px; resize:vertical}
+
+    .helper{
+      color: var(--muted2);
+      font-size:13px;
+      margin-top:8px;
+      display:flex; gap:10px; align-items:flex-start;
+    }
+    .helper .warn{
+      color: var(--gold2);
+      font-weight:950;
+      border:1px solid rgba(216,198,168,.25);
+      background: rgba(216,198,168,.06);
+      padding:4px 8px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+      margin-top:1px;
+    }
+
+    .footer{
+      margin-top:18px;
+      padding:18px 0 32px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color: var(--muted2);
+      font-weight:650;
+      font-size:13px;
+    }
+
+    .toaster{
+      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+      background: rgba(18,18,34,.92);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 999px;
+      padding:10px 14px;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      font-weight:950;
+      opacity:0; pointer-events:none;
+      transition:.18s ease;
+      z-index:60;
+      max-width: calc(100% - 24px);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .toaster.show{opacity:1; transform: translateX(-50%) translateY(-4px)}
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="nav">
+      <a class="brand" href="#top">
+        <span class="logo" aria-hidden="true"></span>
+        <span>
+          GRAFIKA
+          <small>школа рисования, Казань</small>
+        </span>
+      </a>
+
+      <nav class="navlinks" aria-label="Навигация">
+        <a class="chip" href="#about">Про нас</a>
+        <a class="chip" href="#story">Кейс основателей</a>
+        <a class="chip" href="#why">Почему не экономим</a>
+        <a class="chip" href="#slider">Фото</a>
+        <a class="chip" href="#not">Мы не берём</a>
+        <a class="chip" href="#day">День из жизни</a>
+        <a class="chip" href="#test">Тест</a>
+        <a class="chip" href="#jobs">Вакансии</a>
+        <a class="chip" href="#process">Отбор</a>
+        <a class="chip" id="copyAddressTop" href="javascript:void(0)">Скопировать адрес</a>
+        <a class="cta" href="tel:+79022897528">Позвонить Насте</a>
+        <a class="cta" href="#apply">Откликнуться</a>
+      </nav>
+
+      <a class="cta" href="#apply">Откликнуться</a>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="grid">
+        <div class="card pad cardHover reveal">
+          <div class="kicker">Офлайн в Казани • Щапова 47/7 • 4 этаж</div>
+          <h1>Работа в GRAFIKA, где команда реально растёт</h1>
+          <p class="sub">
+            Мы строим сильную офлайн-школу, развиваем продажи и собираем людей,
+            которые любят результат.
+          </p>
+
+          <div class="row">
+            <div class="pill"><strong>Адрес:</strong> ул. Щапова 47/7, 4 этаж</div>
+            <div class="pill"><strong>Руководитель:</strong> Настя</div>
+            <div class="pill"><strong>Связь:</strong> +7 902 289-75-28</div>
+            <div class="pill"><strong>Формат:</strong> офлайн, Казань</div>
+          </div>
+
+          <div class="btnrow">
+            <a class="btn primary" href="#jobs">Смотреть вакансии</a>
+            <a class="btn beige" href="tel:+79022897528">Позвонить</a>
+            <a class="btn" href="https://wa.me/79022897528" target="_blank" rel="noreferrer">WhatsApp</a>
+            <button class="btn" id="copyPitchBtn" type="button">Скопировать текст отклика</button>
+          </div>
+
+          <div class="note">
+            Мы делаем людей счастливыми с помощью рисования
+          </div>
+        </div>
+
+        <div class="card pad reveal">
+          <div class="mini">
+            <div class="box">
+              <h3>Локация</h3>
+              <p>Казань, ул. Щапова 47/7, 4 этаж. Сильная школа, крутая атмосфера.</p>
+              <span class="tag">офлайн, центр</span>
+            </div>
+            <div class="box">
+              <h3>Связь</h3>
+              <p><b>Руководитель: Настя</b><br/>Телефон: <b>+7 902 289-75-28</b></p>
+              <span class="tag">быстро</span>
+            </div>
+            <div class="box">
+              <h3>Про продукт</h3>
+              <p>Офлайн школа рисования: уроки, выставки, события, комьюнити.</p>
+              <span class="tag">сильный продукт</span>
+            </div>
+            <div class="box">
+              <h3>Про рост</h3>
+              <p>Хочешь стать сильнее в продажах и коммуникации - тут прямой путь через практику.</p>
+              <span class="tag">рост через действие</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="sectionTitle">
+        <h2>Про GRAFIKA</h2>
+        <span>коротко</span>
+      </div>
+
+      <div class="card pad cardHover reveal">
+        <p class="muted" style="margin:0">
+          GRAFIKA в Казани - офлайн школа рисования.
+          Мы качаем команду, работаем по системе и метрикам.
+          Любим людей, но требовательны к сотрудникам.
+        </p>
+
+        <ul class="list">
+          <li><span class="dot"></span><span><b>Сильная школа продаж внутри.</b> Учим влиять словами и структурой.</span></li>
+          <li><span class="dot"></span><span><b>Система и метрики.</b> Быстрые итерации, конкретные цифры, разборы, рост.</span></li>
+          <li><span class="dot"></span><span><b>Команда и движ.</b> Ивенты, тусовки, выставки. Это живое место.</span></li>
+        </ul>
+
+        <p class="note">
+          Если хочется прокачаться - welcome.
+        </p>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="sectionTitle">
+        <h2>Кейс: как владельцы выросли из обычных продажников</h2>
+        <span>Настя и Кристина</span>
+      </div>
+
+      <div class="card pad cardHover reveal">
+        <p class="muted" style="margin:0">
+          Мы с Кристиной не родились у богатых родителей. Мы выросли из обычных менеджеров по продажам.
+          Поэтому здесь ценится скорость обучения, дисциплина и умение делать результат.
+        </p>
+
+        <div class="timeline" style="margin-top:12px">
+          <div class="tcard reveal">
+            <b>Старт</b>
+            <p>Обычные продажи: звонки, возражения, первые ошибки, первые победы.</p>
+            <span class="tag">труд</span>
+          </div>
+          <div class="tcard reveal">
+            <b>Система</b>
+            <p>Скрипты, разборы, метрики, постоянные итерации. Превращаем хаос в систему.</p>
+            <span class="tag">структура</span>
+          </div>
+          <div class="tcard reveal">
+            <b>Команда</b>
+            <p>Сначала делали сами, потом научились строить отдел: найм, обучение, стандарты, качество.</p>
+            <span class="tag">лидерство</span>
+          </div>
+          <div class="tcard reveal">
+            <b>Результат</b>
+            <p>Теперь строим школу, где люди растут быстрее, чем обычно.</p>
+            <span class="tag">рост</span>
+          </div>
+        </div>
+
+        <p class="note">
+          Поэтому у нас лучшая команда: быстрый темп, честная обратная связь, и фокус на навыке, который остаётся с тобой навсегда.
+        </p>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="sectionTitle">
+        <h2>Почему у нас не экономят на команде</h2>
+        <span>прям список</span>
+      </div>
+
+      <div class="card pad cardHover reveal">
+        <ul class="list">
+          <li><span class="dot"></span><span><b>Обучение.</b> Скрипты, практика, разборы, постоянная прокачка.</span></li>
+          <li><span class="dot"></span><span><b>Наставничество.</b> Новичка не бросают. Система наставничества.</span></li>
+          <li><span class="dot"></span><span><b>Атмосфера.</b> Место, куда реально хочется приходить.</span></li>
+          <li><span class="dot"></span><span><b>Инструменты.</b> Контроль качества, понятная система.</span></li>
+          <li><span class="dot"></span><span><b>Рост по ролям.</b> Можно вырасти до тимлида, супервайзера, РОПа и дальше.</span></li>
+        </ul>
+        <p class="note">Смысл простой: нам выгодно, чтобы ты стал(а) сильным(ой). Слабые команды это слишком дорого.</p>
+      </div>
+    </section>
+
+    <section id="slider">
+      <div class="sectionTitle">
+        <h2>Фото и вайб</h2>
+        <span>Выглядит ещё лучше</span>
+      </div>
+
+      <div class="slider reveal" data-slider>
+        <div class="slides">
+          <!-- Положи фото в assets/ и назови как ниже -->
+          <div class="slide">
+            <img src="assets/slide-01.jpg" alt="Студия и работы" loading="lazy" decoding="async">
+            <div class="cap">студия, выставки, работы</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-02.jpg" alt="Мероприятие в студии" loading="lazy" decoding="async">
+            <div class="cap">ивенты</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-03.jpg" alt="Процесс и преподаватели" loading="lazy" decoding="async">
+            <div class="cap">процесс</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-04.jpg" alt="Команда" loading="lazy" decoding="async">
+            <div class="cap">команда</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-05.jpg" alt="Командные встречи" loading="lazy" decoding="async">
+            <div class="cap">встречи и движ</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-06.jpg" alt="Тусовки" loading="lazy" decoding="async">
+            <div class="cap">не только работа</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-07.jpg" alt="Команда в студии" loading="lazy" decoding="async">
+            <div class="cap">люди</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-08.jpg" alt="Атмосфера студии" loading="lazy" decoding="async">
+            <div class="cap">вайб</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-09.jpg" alt="Команда, событие" loading="lazy" decoding="async">
+            <div class="cap">события</div>
+          </div>
+          <div class="slide">
+            <img src="assets/slide-10.jpg" alt="Команда, улица, Казань" loading="lazy" decoding="async">
+            <div class="cap">Казань, комьюнити</div>
+          </div>
+        </div>
+
+        <button class="snav prev" type="button" aria-label="Назад" data-prev>‹</button>
+        <button class="snav next" type="button" aria-label="Вперёд" data-next>›</button>
+        <div class="dots" data-dots aria-label="Навигация по слайдам"></div>
+      </div>
+
+      <div class="note">
+        Хочешь больше фото - добавляй ещё блоки <b>slide</b> и файлы в assets/.
+      </div>
+    </section>
+
+    <section id="not">
+      <div class="sectionTitle">
+        <h2>Мы не берём</h2>
+        <span>это экономит время всем</span>
+      </div>
+
+      <div class="card pad cardHover reveal">
+        <p class="muted" style="margin:0">
+         Нам нужен темп, ответственность и энергия.
+        </p>
+
+        <div class="badges">
+          <div class="xBadge"><span class="x">×</span> <b>Люблю оправдания</b> вместо результата</div>
+          <div class="xBadge"><span class="x">×</span> <b>Не люблю людей</b>, но хочу в коммуникации</div>
+          <div class="xBadge"><span class="x">×</span> <b>Боюсь ошибок</b> и не умею учиться на них</div>
+          <div class="xBadge"><span class="x">×</span> <b>Хочу тихо сидеть</b> и чтобы "само получилось"</div>
+          <div class="xBadge"><span class="x">×</span> <b>Ненавижу обратную связь</b> и спорю со всем</div>
+          <div class="xBadge"><span class="x">×</span> <b>Нестабильность</b> без предупреждений и договорённостей</div>
+        </div>
+
+        <p class="note">
+          Если ты читаешь это и понимаешь "да, это не про меня" - отлично, идём дальше.
+        </p>
+      </div>
+    </section>
+
+    <section id="day">
+      <div class="sectionTitle">
+        <h2>День из жизни</h2>
+        <span>чтобы ты понимал(а), куда идёшь</span>
+      </div>
+
+      <div class="card pad cardHover reveal">
+        <div class="tabs" role="tablist">
+          <button class="tabBtn active" type="button" data-tab="promoter">Промоутер</button>
+          <button class="tabBtn" type="button" data-tab="call">Колл-менеджер</button>
+          <button class="tabBtn" type="button" data-tab="sales">Менеджер по продажам</button>
+          <button class="tabBtn" type="button" data-tab="supervisor">Супервайзер</button>
+        </div>
+
+        <div class="tabPanel active" id="tab-promoter" role="tabpanel">
+          <div class="dayGrid">
+            <div class="slot"><div class="time">00:00 - 00:15</div><b>Подготовка</b><p>Точка, цель на смену, настрой.</p></div>
+            <div class="slot"><div class="time">00:15 - 02:30</div><b>Контакты</b><p>Диалог, знакомство, интерес, контакт, приглашение на урок.</p></div>
+            <div class="slot"><div class="time">02:30 - 02:50</div><b>Разбор</b><p>Что сработало, где просел(а), 1 правка на следующую смену.</p></div>
+            <div class="slot"><div class="time">02:50 - 03:00</div><b>Сдача результатов</b><p>Фиксируем контакты, качество, договорённости.</p></div>
+          </div>
+        </div>
+
+        <div class="tabPanel" id="tab-call" role="tabpanel">
+          <div class="dayGrid">
+            <div class="slot"><div class="time">Старт</div><b>Быстрый вход</b><p>Обработка контактов. Сразу к слоту времени.</p></div>
+            <div class="slot"><div class="time">В течение дня</div><b>Назначение</b><p>Два варианта времени, подтверждение в мессенджере, контроль доходимости.</p></div>
+            <div class="slot"><div class="time">Регулярно</div><b>Качество</b><p>Разбор звонков и сообщений, корректировки, усиление конверсии.</p></div>
+            <div class="slot"><div class="time">Финиш</div><b>Отчёт</b><p>Сколько обработано, сколько назначено, где узкие места.</p></div>
+          </div>
+        </div>
+
+        <div class="tabPanel" id="tab-sales" role="tabpanel">
+          <div class="dayGrid">
+            <div class="slot"><div class="time">Старт</div><b>План и приоритеты</b><p>Выявление потребности.</p></div>
+            <div class="slot"><div class="time">В течение дня</div><b>Консультации</b><p>Диагностика, смысл, решение, оплата.</p></div>
+            <div class="slot"><div class="time">Регулярно</div><b>Разборы</b><p>Снимаем слабые места: формулировки, темп, структура, закрытие.</p></div>
+            <div class="slot"><div class="time">Финиш</div><b>Контроль базы</b><p>Следующие шаги, дисциплина.</p></div>
+          </div>
+        </div>
+
+        <div class="tabPanel" id="tab-supervisor" role="tabpanel">
+          <div class="dayGrid">
+            <div class="slot"><div class="time">Старт</div><b>Сбор команды</b><p>Найм, план смен, точки, цели, короткий брифинг.</p></div>
+            <div class="slot"><div class="time">В процессе</div><b>Контроль и обучение</b><p>Выходы на точки, корректировки, мини-разборы на месте.</p></div>
+            <div class="slot"><div class="time">Регулярно</div><b>Найм</b><p>Собеседования, адаптация, закрепление людей.</p></div>
+            <div class="slot"><div class="time">Финиш</div><b>Метрики</b><p>Контакты, качество, доходимость, стабильность. Решения на завтра.</p></div>
+          </div>
+        </div>
+
+        <p class="note">Только сверхусилия дают сверхрезультат</p>
+      </div>
+    </section>
+
+    <section id="test">
+      <div class="sectionTitle">
+        <h2>Тест: ты наш или нет</h2>
+        <span>30 секунд</span>
+      </div>
+
+      <div class="card pad cardHover reveal">
+        <p class="muted" style="margin:0">
+          Выбирай "Да" или "Нет". Здесь нет правильного ответа.
+        </p>
+
+        <div class="quiz" id="quiz">
+          <div class="q" data-q="1">
+            <div class="qTop">
+              <div>
+                <b>Я люблю драйв и эмоции</b>
+                <p>Метрики, планы, разборы - это не пугает.</p>
+              </div>
+              <div class="yn">
+                <button type="button" data-a="1" data-v="1">Да</button>
+                <button type="button" data-a="0" data-v="1">Нет</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="q" data-q="2">
+            <div class="qTop">
+              <div>
+                <b>Я люблю учиться на практике</b>
+                <p>Сделал(а) - получил(а) обратную связь - улучшил(а).</p>
+              </div>
+              <div class="yn">
+                <button type="button" data-a="1" data-v="2">Да</button>
+                <button type="button" data-a="0" data-v="2">Нет</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="q" data-q="3">
+            <div class="qTop">
+              <div>
+                <b>Я не боюсь людей</b>
+                <p>Могу начать разговор, выдержать отказ и идти дальше.</p>
+              </div>
+              <div class="yn">
+                <button type="button" data-a="1" data-v="3">Да</button>
+                <button type="button" data-a="0" data-v="3">Нет</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="q" data-q="4">
+            <div class="qTop">
+              <div>
+                <b>Я хочу расти</b>
+                <p>Навык продаж и коммуникации - это то, к чему я стремлюсь.</p>
+              </div>
+              <div class="yn">
+                <button type="button" data-a="1" data-v="4">Да</button>
+                <button type="button" data-a="0" data-v="4">Нет</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="q" data-q="5">
+            <div class="qTop">
+              <div>
+                <b>Я держу обещания и время</b>
+                <p>Если договорились, значит сделаю. Если не могу - предупреждаю.</p>
+              </div>
+              <div class="yn">
+                <button type="button" data-a="1" data-v="5">Да</button>
+                <button type="button" data-a="0" data-v="5">Нет</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="q" data-q="6">
+            <div class="qTop">
+              <div>
+                <b>Я не разваливаюсь от обратной связи</b>
+                <p>Мне важнее стать сильнее, чем быть правым(ой).</p>
+              </div>
+              <div class="yn">
+                <button type="button" data-a="1" data-v="6">Да</button>
+                <button type="button" data-a="0" data-v="6">Нет</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="q" data-q="7">
+            <div class="qTop">
+              <div>
+                <b>Я нормально принимаю отказ</b>
+                <p>Это статистика, а не трагедия.</p>
+              </div>
+              <div class="yn">
+                <button type="button" data-a="1" data-v="7">Да</button>
+                <button type="button" data-a="0" data-v="7">Нет</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="q" data-q="8">
+            <div class="qTop">
+              <div>
+                <b>Я хочу команду, где есть жизнь</b>
+                <p>Комьюнити - мне это подходит.</p>
+              </div>
+              <div class="yn">
+                <button type="button" data-a="1" data-v="8">Да</button>
+                <button type="button" data-a="0" data-v="8">Нет</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quizFooter">
+          <div class="result" id="quizResult">
+            <b>Результат:</b> выбери ответы, и я скажу, насколько ты нам подходишь.
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <button class="btn" type="button" id="quizReset">Сбросить</button>
+            <a class="btn primary" href="#apply" id="quizToApply">Откликнуться</a>
+          </div>
+        </div>
+
+        <p class="note">Тест не заменяет собеседование. Он просто экономит нервы.</p>
+      </div>
+    </section>
+
+    <section id="jobs">
+      <div class="sectionTitle">
+        <h2>Вакансии</h2>
+        <span>выбирай роль и бей в результат</span>
+      </div>
+
+      <div class="jobs">
+        <article class="job reveal" id="job-promoter">
+          <div class="jobHead">
+            <h3>Промоутер (офлайн)</h3>
+            <div class="badge">гибкий график</div>
+          </div>
+          <p>Подходишь к людям, общаешься, берёшь контакт и зовёшь на урок. Это не листовки.</p>
+
+          <details>
+            <summary>Что делать</summary>
+            <ul>
+              <li>Общаться с людьми в проходимых местах, знакомиться, вести диалог.</li>
+              <li>Брать номер, фиксировать контакт.</li>
+              <li>Приглашать на пробный урок рисования.</li>
+              <li>Работать по скрипту и расти по качеству.</li>
+            </ul>
+          </details>
+
+          <details style="margin-top:10px">
+            <summary>Условия</summary>
+            <ul>
+              <li>Казань, офлайн. Смены от 3 часов, график гибкий.</li>
+              <li>Оплата: выход + бонусы за результат (подробно на созвоне).</li>
+              <li>Обучение: скрипты, разборы, поддержка.</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <button class="applyBtn" data-vacancy="Промоутер" type="button">Откликнуться</button>
+          </div>
+        </article>
+
+        <article class="job reveal" id="job-sales">
+          <div class="jobHead">
+            <h3>Менеджер по продажам</h3>
+            <div class="badge">рост до лидера</div>
+          </div>
+          <p>Продажи через смысл</p>
+
+          <details>
+            <summary>Что делать</summary>
+            <ul>
+              <li>Консультировать по обучению и доводить до оплаты.</li>
+              <li>Работать с возражениями без давления.</li>
+              <li>Вести базу, держать дисциплину.</li>
+            </ul>
+          </details>
+
+          <details style="margin-top:10px">
+            <summary>Условия</summary>
+            <ul>
+              <li>Казань, офлайн.</li>
+              <li>Оплата: фикс + бонусы (на собесе).</li>
+              <li>Рост: старший, наставник, руководитель .</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <button class="applyBtn" data-vacancy="Менеджер по продажам" type="button">Откликнуться</button>
+          </div>
+        </article>
+
+        <article class="job reveal" id="job-call">
+          <div class="jobHead">
+            <h3>Колл-менеджер (звонки + мессенджеры)</h3>
+            <div class="badge">темп и метрики</div>
+          </div>
+          <p>Быстро обрабатываешь контакты и заявки, назначаешь визит, подтверждаешь в мессенджере.</p>
+
+          <details>
+            <summary>Что делать</summary>
+            <ul>
+              <li>Обработка тёплых заявок и контактов от промоутеров.</li>
+              <li>Сильное короткое начало разговора, без длинных вступлений.</li>
+              <li>Назначение: два варианта времени, подтверждение.</li>
+              <li>Метрики: скорость реакции, конверсия, доходимость.</li>
+            </ul>
+          </details>
+
+          <details style="margin-top:10px">
+            <summary>Условия</summary>
+            <ul>
+              <li>Казань, офлайн.</li>
+              <li>Оплата: фикс + бонусы за результат.</li>
+              <li>Рост: продажи, тимлид.</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <button class="applyBtn" data-vacancy="Колл-менеджер" type="button">Откликнуться</button>
+          </div>
+        </article>
+
+        <article class="job reveal" id="job-supervisor">
+          <div class="jobHead">
+            <h3>Супервайзер промоутеров</h3>
+            <div class="badge">лидерство</div>
+          </div>
+          <p>Собираешь и качаешь промо-команду: найм, обучение, дисциплина, качество, цифры.</p>
+
+          <details>
+            <summary>Что делать</summary>
+            <ul>
+              <li>Найм и адаптация промоутеров.</li>
+              <li>План смен, точки, контроль качества контактов.</li>
+              <li>Обучение, разборы, мотивация.</li>
+              <li>Метрики: контакты, доходимость, стабильность.</li>
+            </ul>
+          </details>
+
+          <details style="margin-top:10px">
+            <summary>Условия</summary>
+            <ul>
+              <li>Казань, офлайн.</li>
+              <li>Оплата: фикс + бонусы от результата направления.</li>
+              <li>Рост до руководителя более крупного блока.</li>
+            </ul>
+          </details>
+
+          <div class="actions">
+            <button class="applyBtn" data-vacancy="Супервайзер промоутеров" type="button">Откликнуться</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="sectionTitle">
+        <h2>Как мы набираем</h2>
+        <span>?</span>
+      </div>
+
+      <div class="process">
+        <div class="step reveal">
+          <div class="n">1</div>
+          <b>Отклик</b>
+          <p>Заполнил(а) форму или позвонил(а) Насте.</p>
+        </div>
+        <div class="step reveal">
+          <div class="n">2</div>
+          <b>Мини-интервью</b>
+          <p>10-15 минут. Адекватность и мотивация.</p>
+        </div>
+        <div class="step reveal">
+          <div class="n">3</div>
+          <b>Пробный формат</b>
+          <p>Промо: выход с наставником.</p>
+        </div>
+        <div class="step reveal">
+          <div class="n">4</div>
+          <b>Старт</b>
+          <p>Если подошли друг другу, работаем.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply">
+      <div class="sectionTitle">
+        <h2>Отклик</h2>
+        <span>быстро</span>
+      </div>
+
+      <div class="card pad cardHover reveal">
+        <form id="applyForm">
+          <div class="formGrid">
+            <div>
+              <label for="name">Имя</label>
+              <input id="name" name="name" placeholder="Например: Настя" autocomplete="name" required />
+            </div>
+
+            <div>
+              <label for="phone">Телефон</label>
+              <input id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required />
+            </div>
+
+            <div>
+              <label for="vacancy">Вакансия</label>
+              <select id="vacancy" name="vacancy" required>
+                <option value="">Выбери роль</option>
+                <option>Промоутер</option>
+                <option>Менеджер по продажам</option>
+                <option>Колл-менеджер</option>
+                <option>Супервайзер промоутеров</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contact">Куда писать</label>
+              <select id="contact" name="contact" required>
+                <option>WhatsApp</option>
+                <option>Звонок</option>
+              </select>
+            </div>
+
+            <div style="grid-column:1 / -1">
+              <label for="msg">Пару слов о себе</label>
+              <textarea id="msg" name="msg" placeholder="Опыт, график, почему мы должны тебя взять."></textarea>
+              <div class="helper">
+                <span class="warn">Важно</span>
+                <span>Чем яснее напишешь, тем быстрее решим.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="btnrow" style="margin-top:14px">
+            <button class="btn primary" type="submit">Отправить отклик</button>
+            <a class="btn beige" href="tel:+79022897528">Позвонить Насте</a>
+            <a class="btn" href="https://wa.me/79022897528" target="_blank" rel="noreferrer">WhatsApp</a>
+            <button class="btn" type="button" id="copyAddressBtn">Скопировать адрес</button>
+          </div>
+
+          <p class="note" style="margin-top:12px">
+            Адрес студии: <b>Казань, ул. Щапова 47/7, 4 этаж</b>. Руководитель: <b>Настя</b> <b>+7 902 289-75-28</b>.
+          </p>
+        </form>
+      </div>
+
+      <div class="footer">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between">
+          <div>
+            <b style="color:var(--text)">GRAFIKA • Казань</b><br/>
+            <span class="muted">ул. Щапова 47/7, 4 этаж</span>
+          </div>
+          <div class="muted" id="contactsLine"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toaster" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Контакты
+    const CONTACTS = {
+      address: "Казань, ул. Щапова 47/7, 4 этаж",
+      bossName: "Настя",
+      bossPhonePretty: "+7 902 289-75-28",
+      bossPhoneRaw: "79022897528"
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    const toast = (text) => {
+      const el = $("toast");
+      el.textContent = text;
+      el.classList.add("show");
+      clearTimeout(window.__t);
+      window.__t = setTimeout(() => el.classList.remove("show"), 2200);
+    };
+
+    const normalizePhone = (raw) => (raw || "")
+      .replace(/[^\d+]/g, "")
+      .replace(/^8/, "+7");
+
+    const buildMessage = ({name, phone, vacancy, contact, msg}) => {
+      const lines = [
+        `Привет! Хочу к вам в GRAFIKA (Казань).`,
+        `Вакансия: ${vacancy}`,
+        `Имя: ${name}`,
+        `Телефон: ${phone}`,
+        `Связь: ${contact}`,
+        `Адрес студии: ${CONTACTS.address}`
+      ];
+      if (msg && msg.trim().length) lines.push(`О себе: ${msg.trim()}`);
+      lines.push(`Готов(а) на короткое интервью и пробный формат.`);
+      return lines.join("\n");
+    };
+
+    const openWhatsApp = (text) => {
+      const url = `https://wa.me/${CONTACTS.bossPhoneRaw}?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    };
+
+    // Футер контакты
+    $("contactsLine").textContent =
+      `Руководитель: ${CONTACTS.bossName} • ${CONTACTS.bossPhonePretty} • ${CONTACTS.address}`;
+
+    // Копирование адреса
+    const copyAddress = async () => {
+      try{
+        await navigator.clipboard.writeText(CONTACTS.address);
+        toast("Адрес скопирован.");
+      }catch{
+        toast("Не смог скопировать. Бывает.");
+      }
+    };
+    $("copyAddressBtn").addEventListener("click", copyAddress);
+    $("copyAddressTop").addEventListener("click", copyAddress);
+
+    // Быстрые кнопки вакансий
+    document.querySelectorAll(".applyBtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        $("vacancy").value = btn.dataset.vacancy || "";
+        document.querySelector("#apply").scrollIntoView({behavior:"smooth"});
+        toast("Вакансия выбрана. Заполни пару полей и отправляй.");
+      });
+    });
+
+    // Скопировать текст отклика
+    $("copyPitchBtn").addEventListener("click", async () => {
+      const sample = [
+        "Привет! Хочу к вам в GRAFIKA (Казань).",
+        "Вакансия: (выбери)",
+        "Имя: (твоё имя)",
+        "Телефон: (твой номер)",
+        "Коротко о себе: (опыт/график/почему ты тащишь)",
+        `Адрес студии: ${CONTACTS.address}`,
+        "Готов(а) на мини-интервью и пробный формат."
+      ].join("\n");
+      try{
+        await navigator.clipboard.writeText(sample);
+        toast("Скопировано. Вставляй куда надо.");
+      }catch{
+        toast("Не смог скопировать. Бывает.");
+      }
+    });
+
+    // Отправка формы
+    $("applyForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = $("name").value.trim();
+      const phone = normalizePhone($("phone").value.trim());
+      const vacancy = $("vacancy").value;
+      const contact = $("contact").value;
+      const msg = $("msg").value;
+
+      if (!name || !phone || !vacancy) {
+        toast("Заполни имя, телефон и вакансию.");
+        return;
+      }
+
+      const text = buildMessage({name, phone, vacancy, contact, msg});
+      openWhatsApp(text);
+      toast("Открыл WhatsApp. Отправь сообщение.");
+    });
+
+    // Tabs: day in life
+    const tabBtns = document.querySelectorAll(".tabBtn");
+    const panels = {
+      promoter: document.querySelector("#tab-promoter"),
+      call: document.querySelector("#tab-call"),
+      sales: document.querySelector("#tab-sales"),
+      supervisor: document.querySelector("#tab-supervisor")
+    };
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tabBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const key = btn.dataset.tab;
+        Object.values(panels).forEach(p => p.classList.remove("active"));
+        panels[key].classList.add("active");
+      });
+    });
+
+    // Quiz
+    const quizState = new Map(); // v -> 0/1
+    const quizEl = document.querySelector("#quiz");
+    const resEl = document.querySelector("#quizResult");
+    const resetBtn = document.querySelector("#quizReset");
+
+    const renderQuizResult = () => {
+      const answered = quizState.size;
+      const total = 8;
+      const score = [...quizState.values()].reduce((a,b)=>a+b,0);
+
+      if (answered === 0){
+        resEl.innerHTML = `<b>Результат:</b> выбери ответы, и я скажу, насколько ты совпадаешь по стилю.`;
+        return;
+      }
+
+      if (answered < total){
+        resEl.innerHTML = `<b>Промежуточно:</b> ${score}/${total}. Ответь на все, чтобы было честно.`;
+        return;
+      }
+
+      let text = "";
+      if (score <= 3) text = "Скорее мимо. Здесь будет тяжело и раздражающе.";
+      else if (score <= 6) text = "Можно пробовать. Если готов(а) учиться и держать темп, зайдёт.";
+      else text = "Ты наш(а) по стилю. Откликайся, не тяни.";
+
+      resEl.innerHTML = `<b>Результат:</b> ${score}/${total}. ${text}`;
+    };
+
+    quizEl.querySelectorAll("button[data-v]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const v = Number(btn.dataset.v);
+        const a = Number(btn.dataset.a);
+
+        // Активность кнопок в рамках вопроса
+        const group = btn.closest(".yn");
+        group.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        quizState.set(v, a);
+        renderQuizResult();
+      });
+    });
+
+    resetBtn.addEventListener("click", () => {
+      quizState.clear();
+      quizEl.querySelectorAll("button[data-v]").forEach(b => b.classList.remove("active"));
+      renderQuizResult();
+      toast("Сброшено.");
+    });
+
+    // Slider
+    const slider = document.querySelector("[data-slider]");
+    if (slider){
+      const track = slider.querySelector(".slides");
+      const slides = Array.from(slider.querySelectorAll(".slide"));
+      const dotsWrap = slider.querySelector("[data-dots]");
+      const prev = slider.querySelector("[data-prev]");
+      const next = slider.querySelector("[data-next]");
+
+      let index = 0;
+      let timer = null;
+
+      const setIndex = (i) => {
+        index = (i + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        dotsWrap.querySelectorAll(".dotBtn").forEach((d, di) => {
+          d.classList.toggle("active", di === index);
+        });
+      };
+
+      // dots
+      slides.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "dotBtn" + (i===0 ? " active" : "");
+        b.addEventListener("click", () => setIndex(i));
+        dotsWrap.appendChild(b);
+      });
+
+      prev.addEventListener("click", () => setIndex(index - 1));
+      next.addEventListener("click", () => setIndex(index + 1));
+
+      // autoplay
+      const start = () => {
+        stop();
+        timer = setInterval(() => setIndex(index + 1), 5200);
+      };
+      const stop = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+      };
+      slider.addEventListener("mouseenter", stop);
+      slider.addEventListener("mouseleave", start);
+      start();
+
+      // swipe
+      let x0 = null;
+      slider.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, {passive:true});
+      slider.addEventListener("touchend", (e) => {
+        if (x0 === null) return;
+        const x1 = e.changedTouches[0].clientX;
+        const dx = x1 - x0;
+        if (Math.abs(dx) > 40){
+          if (dx > 0) setIndex(index - 1);
+          else setIndex(index + 1);
+        }
+        x0 = null;
+      }, {passive:true});
+    }
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting){
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.12});
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
